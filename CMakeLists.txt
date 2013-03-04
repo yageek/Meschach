@@ -1,16 +1,17 @@
 PROJECT(Meschach)
 
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake_modules)
 #CMake module inclusion 
 INCLUDE (CheckIncludeFiles)
 INCLUDE(CheckCXXSourceCompiles)
+INCLUDE(CheckHeaderSTDC)
 
 #### configure.in part #########
 ####################################
 #Add definitions
-add_definitions(-std=c99) # AC_PROG_CC_STDC
-
+check_header_stdc()
+MESSAGE(STATUS "Check STDC_HEADER:${STDC_HEADERS}")
 #Check local prototypes
 CHECK_CXX_SOURCE_COMPILES("extern int test (int i, double x);" HAVE_PROTOTYPES)
 CHECK_CXX_SOURCE_COMPILES("struct s1 {int (*f) (int a);};\nstruct s2 {int (*f) (double a);};" HAVE_PROTOTYPES_IN_STRUCT)
@@ -51,10 +52,14 @@ execute_process(COMMAND ./maxint OUTPUT_VARIABLE M_MAX_INT)
 ENDIF(ret EQUAL 0)
 ## Not understanding : 'echo checking char '\\0' vs. float zeros'
 
+
 #Headers presence test
 CHECK_INCLUDE_FILES(memory.h HAVE_MALLOC_H)
 CHECK_INCLUDE_FILES(complex.h HAVE_COMPLEX_H)
 CHECK_INCLUDE_FILES(varargs.h HAVE_VARARGS_H)
+
+# Generate Headers
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 
 #### makefile.in part #########
 ####################################
@@ -65,4 +70,17 @@ set(HBASE err.h meminfo.h machine.h matrix.h)
 
 set(HLIST ${HBASE} iter.h matlab.h matrix2.h  oldnames.h sparse.h sparse2.h zmatrix.h zmatrix2.h)
 
-set(TORTURE )
+set(LIST_1 copy.c err.c matrixio.c memory.c vecop.c matop.c pxop.c 
+	submat.c init.c otherio.c machine.c matlab.c ivecop.c version.c 
+	meminfo.c memstat.c)
+
+set(LIST_2 lufactor.c bkpfacto.c chfactor.c qrfactor.c solve.c hsehldr.c 
+	givens.c update.c norm.c hessen.c symmeig.c schur.c svd.c fft.c 
+	mfunc.c bdfactor.c)
+
+set (LIST_3 sparse.c sprow.c sparseio.c spchfctr.c splufctr.c 
+	spbkp.c spswap.c iter0.c itersym.c iternsym.c)
+
+set (OLD_LIST onjgrad.c lanczos.c arnoldi.c)
+
+

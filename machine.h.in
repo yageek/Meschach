@@ -14,22 +14,22 @@
 #ifndef _MACHINE_H
 #define _MACHINE_H 1
 
-#undef const
+#cmakedefine const
 
-#undef MALLOCDECL
-#undef NOT_SEGMENTED
-#undef HAVE_MEMORY_H
-#undef HAVE_COMPLEX_H
-#undef HAVE_MALLOC_H
-#undef STDC_HEADERS
-#undef HAVE_BCOPY
-#undef HAVE_BZERO
-#undef CHAR0ISDBL0
-#undef WORDS_BIGENDIAN
-#undef U_INT_DEF
-#undef VARARGS
-#undef HAVE_PROTOTYPES
-#undef HAVE_PROTOTYPES_IN_STRUCT
+#cmakedefine MALLOCDECL
+#cmakedefine NOT_SEGMENTED
+#cmakedefine HAVE_MEMORY_H
+#cmakedefine HAVE_COMPLEX_H
+#cmakedefine HAVE_MALLOC_H
+#cmakedefine STDC_HEADERS
+#cmakedefine HAVE_BCOPY
+#cmakedefine HAVE_BZERO
+#cmakedefine CHAR0ISDBL0
+#cmakedefine WORDS_BIGENDIAN
+#cmakedefine U_INT_DEF
+#cmakedefine VARARGS
+#cmakedefine HAVE_PROTOTYPES
+#cmakedefine HAVE_PROTOTYPES_IN_STRUCT
 
 /* for inclusion into C++ files */
 #ifdef __cplusplus
@@ -56,12 +56,12 @@
 #endif /* HAVE_PROTOTYPES_IN_STRUCT */
 
 /* for basic or larger versions */
-#undef COMPLEX
-#undef SPARSE
+#cmakedefine COMPLEX
+#cmakedefine SPARSE
 
 /* for loop unrolling */
-#undef VUNROLL
-#undef MUNROLL
+#cmakedefine VUNROLL
+#cmakedefine MUNROLL
 
 /* for segmented memory */
 #ifndef NOT_SEGMENTED
@@ -177,8 +177,8 @@
 #endif
 #endif
 
-#undef F_MACHEPS
-#undef D_MACHEPS
+#cmakedefine F_MACHEPS
+#cmakedefine D_MACHEPS
 
 #ifndef MACHEPS
 #if REAL == DOUBLE
@@ -190,7 +190,7 @@
 #endif
 #endif
 
-#undef M_MACHEPS
+#cmakedefine M_MACHEPS
 
 /********************
 #ifdef DBL_EPSILON
@@ -203,7 +203,7 @@
 #endif
 ********************/
 
-#undef	M_MAX_INT
+#cmakedefine	M_MAX_INT
 #ifdef	M_MAX_INT
 #ifndef MAX_RAND
 #define	MAX_RAND ((double)(M_MAX_INT))

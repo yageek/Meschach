@@ -11,7 +11,6 @@ INCLUDE(CheckHeaderSTDC)
 ####################################
 #Add definitions
 check_header_stdc()
-MESSAGE(STATUS "Check STDC_HEADER:${STDC_HEADERS}")
 #Check local prototypes
 CHECK_CXX_SOURCE_COMPILES("extern int test (int i, double x);" HAVE_PROTOTYPES)
 CHECK_CXX_SOURCE_COMPILES("struct s1 {int (*f) (int a);};\nstruct s2 {int (*f) (double a);};" HAVE_PROTOTYPES_IN_STRUCT)
@@ -52,6 +51,15 @@ execute_process(COMMAND ./maxint OUTPUT_VARIABLE M_MAX_INT)
 ENDIF(ret EQUAL 0)
 ## Not understanding : 'echo checking char '\\0' vs. float zeros'
 
+#Compile Options
+OPTION(COMPLEX "incorporate complex functions" OFF)
+OPTION(SPARSE  "incorporate sparse matrix functions" OFF)
+OPTION(VUNROLL "unroll low level loops on vectors" OFF)
+OPTION(MUNROLL "unroll low level loops on matrices" OFF)
+OPTION(SEGMENTED " single precision" OFF)
+OPTION(REAL_FLT "float" OFF)
+OPTION(REAL_DBL "double precision (default)" ON)
+
 
 #Headers presence test
 CHECK_INCLUDE_FILES(memory.h HAVE_MALLOC_H)
@@ -59,7 +67,7 @@ CHECK_INCLUDE_FILES(complex.h HAVE_COMPLEX_H)
 CHECK_INCLUDE_FILES(varargs.h HAVE_VARARGS_H)
 
 # Generate Headers
-CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/machine.h.in ${CMAKE_CURRENT_BINARY_DIR}/machine.h)
 
 #### makefile.in part #########
 ####################################
@@ -82,5 +90,9 @@ set (LIST_3 sparse.c sprow.c sparseio.c spchfctr.c splufctr.c
 	spbkp.c spswap.c iter0.c itersym.c iternsym.c)
 
 set (OLD_LIST onjgrad.c lanczos.c arnoldi.c)
+
+file(GLOB_RECURSE all_source_files *.c)
+file(GLOB_RECURSE all_source_headers *.h)
+
 
 

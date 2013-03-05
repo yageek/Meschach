@@ -1,6 +1,7 @@
-/* machine.h.  Generated automatically by configure.  */
 /* Any machine specific stuff goes here */
 /* Add details necessary for your own installation here! */
+
+/* RCS id: $Id: machine.h.in,v 1.3 1995/03/27 15:36:21 des Exp $ */
 
 /* This is for use with "configure" -- if you are not using configure
 	then use machine.van for the "vanilla" version of machine.h */
@@ -10,24 +11,53 @@
 			MALLOCDECL (declared if malloc() etc have
 					been declared) */
 
+#ifndef _MACHINE_H
+#define _MACHINE_H 1
+
 /* #undef const */
 
 /* #undef MALLOCDECL */
-#define NOT_SEGMENTED 1
-/* #undef HAVE_COMPLEX_H */
-#define HAVE_MALLOC_H 1
-#define STDC_HEADERS 1
-#define HAVE_BCOPY 1
-#define HAVE_BZERO 1
-#define CHAR0ISDBL0 1
+/* #undef NOT_SEGMENTED */
+#define HAVE_MEMORY_H
+#define HAVE_COMPLEX_H
+#define HAVE_MALLOC_H
+/* #undef STDC_HEADERS */
+/* #undef HAVE_BCOPY */
+/* #undef HAVE_BZERO */
+/* #undef CHAR0ISDBL0 */
 /* #undef WORDS_BIGENDIAN */
-#define U_INT_DEF 1
-#define VARARGS 1
+/* #undef U_INT_DEF */
+/* #undef VARARGS */
+/* #undef HAVE_PROTOTYPES */
+/* #undef HAVE_PROTOTYPES_IN_STRUCT */
 
+/* for inclusion into C++ files */
+#ifdef __cplusplus
+#define ANSI_C 1
+#ifndef HAVE_PROTOTYPES 
+#define HAVE_PROTOTYPES 1
+#endif
+#ifndef HAVE_PROTOTYPES_IN_STRUCT
+#define HAVE_PROTOTYPES_IN_STRUCT 1
+#endif
+#endif /* __cplusplus */
+
+/* example usage: VEC *PROTO(v_get,(int dim)); */
+#ifdef HAVE_PROTOTYPES
+#define	PROTO(name,args)	name args
+#else
+#define PROTO(name,args)	name()
+#endif /* HAVE_PROTOTYPES */
+#ifdef HAVE_PROTOTYPES_IN_STRUCT
+/* PROTO_() is to be used instead of PROTO() in struct's and typedef's */
+#define	PROTO_(name,args)	name args
+#else
+#define PROTO_(name,args)	name()
+#endif /* HAVE_PROTOTYPES_IN_STRUCT */
 
 /* for basic or larger versions */
-#define COMPLEX 1
-#define SPARSE 1
+/* #undef COMPLEX */
+/* #undef SPARSE */
 
 /* for loop unrolling */
 /* #undef VUNROLL */
@@ -94,7 +124,6 @@
 /* If prototypes are available & ANSI_C not yet defined, then define it,
 	but don't include any header files as the proper ANSI C headers
         aren't here */
-#define HAVE_PROTOTYPES 1
 #ifdef HAVE_PROTOTYPES
 #ifndef ANSI_C
 #define ANSI_C  1
@@ -109,8 +138,8 @@
 #define DOUBLE 		2
 #define LONG_DOUBLE 	3
 
-/* #undef REAL_FLT */
-/* #undef REAL_DBL */
+#undef REAL_FLT
+#undef REAL_DBL
 
 /* if nothing is defined, choose double precision */
 #ifndef REAL_DBL
@@ -148,8 +177,8 @@
 #endif
 #endif
 
-#define F_MACHEPS 1.19209e-07
-#define D_MACHEPS 2.22045e-16
+#define F_MACHEPS
+#define D_MACHEPS
 
 #ifndef MACHEPS
 #if REAL == DOUBLE
@@ -174,7 +203,7 @@
 #endif
 ********************/
 
-#define	M_MAX_INT 2147483647
+#define	M_MAX_INT
 #ifdef	M_MAX_INT
 #ifndef MAX_RAND
 #define	MAX_RAND ((double)(M_MAX_INT))
@@ -184,6 +213,10 @@
 /* for non-ANSI systems */
 #ifndef HUGE_VAL
 #define HUGE_VAL HUGE
+#else
+#ifndef HUGE
+#define HUGE HUGE_VAL
+#endif
 #endif
 
 
@@ -191,3 +224,4 @@
 extern	int	isatty(int);
 #endif
 
+#endif

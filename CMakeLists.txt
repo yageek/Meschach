@@ -62,12 +62,13 @@ OPTION(REAL_DBL "double precision (default)" ON)
 
 
 #Headers presence test
-CHECK_INCLUDE_FILES(memory.h HAVE_MALLOC_H)
+CHECK_INCLUDE_FILES(memory.h HAVE_MEMORY_H)
+CHECK_INCLUDE_FILES(malloc.h HAVE_MALLOC_H)
 CHECK_INCLUDE_FILES(complex.h HAVE_COMPLEX_H)
 CHECK_INCLUDE_FILES(varargs.h HAVE_VARARGS_H)
 
 # Generate Headers
-CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/machine.h.in ${CMAKE_CURRENT_BINARY_DIR}/machine.h)
+CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/machine.h.in ${CMAKE_CURRENT_SOURCE_DIR}/machine.h)
 
 #### makefile.in part #########
 ####################################
@@ -91,8 +92,10 @@ set (LIST_3 sparse.c sprow.c sparseio.c spchfctr.c splufctr.c
 
 set (OLD_LIST onjgrad.c lanczos.c arnoldi.c)
 
+
 file(GLOB_RECURSE all_source_files *.c)
 file(GLOB_RECURSE all_source_headers *.h)
 
+add_library(meschach ${all_source_files})
 
 

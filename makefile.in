@@ -89,7 +89,7 @@ part3: $(LIST3)
 	ar ru meschach.a $(LIST3)
 	$(RANLIB) meschach.a
 
-$(ZLIST1): $(HBASDE) zmatrix.h
+$(ZLIST1): $(HBASE) zmatrix.h
 zpart1: $(ZLIST1)
 	ar ru meschach.a $(ZLIST1)
 	$(RANLIB) meschach.a

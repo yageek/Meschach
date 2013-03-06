@@ -89,11 +89,24 @@ set(LIST_2 lufactor.c bkpfacto.c chfactor.c qrfactor.c solve.c hsehldr.c
 set (LIST_3 sparse.c sprow.c sparseio.c spchfctr.c splufctr.c 
 	spbkp.c spswap.c iter0.c itersym.c iternsym.c)
 
+set (ZLIST1 zmachine.c zcopy.c zmatio.c zmemory.c zvecop.c zmatop.c znorm.c zfunc.c )
+
+set (ZLIST2 zlufctr.c zsolve.c zmatlab.c zhsehldr.c zqrfctr.c zgivens.c  zhessen.c zschur.c)
+
 set (OLD_LIST onjgrad.c lanczos.c arnoldi.c)
 
-file(GLOB_RECURSE all_source_files *.c)
-file(GLOB_RECURSE all_source_headers *.h)
+set(TORTURE torture.c sptort.c ztorture.c memtort.c itertort.c  mfuntort.c iotort.c)
 
-add_library(meschach ${all_source_files})
+set (sources_files ${LIST_1} ${LIST_2})
+
+if(SPARSE)
+	set(sources_files ${sources_files} ${LIST_3})
+endif(SPARSE)
+
+if(COMPLEX)
+	set (sources_files ${sources_files} ${ZLIST1} ${ZLIST2})
+endif(COMPLEX)
+
+add_library(meschach ${sources_files})
 
 

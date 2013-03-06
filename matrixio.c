@@ -445,7 +445,7 @@ char    *f_string;
 const char	*setformat(const char *f_string)
 #endif
 {
-    const char	*old_f_string;
+    static const char	*old_f_string;
     old_f_string = format;
     if ( f_string != (char *)NULL && *f_string != '\0' )
 	format = f_string;

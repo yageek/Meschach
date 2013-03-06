@@ -56,8 +56,8 @@
 #endif /* HAVE_PROTOTYPES_IN_STRUCT */
 
 /* for basic or larger versions */
-/* #undef COMPLEX */
-/* #undef SPARSE */
+#define COMPLEX 1
+#define SPARSE  1
 
 /* for loop unrolling */
 /* #undef VUNROLL */
@@ -117,11 +117,6 @@
 /* nonstandard zero function */
 #define	MEM_ZERO(where,size)	bzero((char *)(where),(int)(size))
 #endif
-#endif
-
-/* if the system has complex.h */
-#ifdef HAVE_COMPLEX_H
-#include	<complex.h>
 #endif
 
 /* If prototypes are available & ANSI_C not yet defined, then define it,

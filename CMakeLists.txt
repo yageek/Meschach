@@ -58,13 +58,21 @@ ENDIF(ret EQUAL 0)
 ## Not understanding : 'echo checking char '\\0' vs. float zeros'
 
 #Compile Options
-OPTION(COMPLEX "incorporate complex functions" OFF)
-OPTION(SPARSE  "incorporate sparse matrix functions" OFF)
-OPTION(VUNROLL "unroll low level loops on vectors" OFF)
-OPTION(MUNROLL "unroll low level loops on matrices" OFF)
-OPTION(SEGMENTED " single precision" OFF)
-OPTION(REAL_FLT "float" OFF)
-OPTION(REAL_DBL "double precision (default)" ON)
+OPTION(COMPLEX_OPTION "incorporate complex functions" OFF)
+OPTION(SPARSE_OPTION  "incorporate sparse matrix functions" OFF)
+OPTION(VUNROLL_OPTION  "unroll low level loops on vectors" OFF)
+OPTION(MUNROLL_OPTION  "unroll low level loops on matrices" OFF)
+OPTION(SEGMENTED_OPTION  "single precision" OFF)
+OPTION(REAL_FLT_OPTION  "float" OFF)
+OPTION(REAL_DBL_OPTION  "double precision (default)" ON)
+
+if(COMPLEX_OPTION)
+	set(COMPLEX 1)
+endif(COMPLEX_OPTION)
+
+if(SPARSE_OPTION)
+	set(SPARSE 1)
+endif(COMPLEX_OPTION)
 
 # Generate Headers
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/machine.h.in ${CMAKE_CURRENT_SOURCE_DIR}/machine.h)
@@ -99,13 +107,13 @@ set(TORTURE torture.c sptort.c ztorture.c memtort.c itertort.c  mfuntort.c iotor
 
 set (sources_files ${LIST_1} ${LIST_2})
 
-if(SPARSE)
+if(SPARSE_OPTION)
 	set(sources_files ${sources_files} ${LIST_3})
-endif(SPARSE)
+endif(SPARSE_OPTION )
 
-if(COMPLEX)
+if(COMPLEX_OPTION)
 	set (sources_files ${sources_files} ${ZLIST1} ${ZLIST2})
-endif(COMPLEX)
+endif(COMPLEX_OPTION)
 
 add_library(meschach ${sources_files})
 

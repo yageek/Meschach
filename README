@@ -1,5 +1,7 @@
+# CMake Integration 
 
-
+To compile : cmake .. -DCOMPLEX_OPTION=NO -SPARSE_OPTION=NO
+-------
 				     
 			     Meschach Library
 			       Version 1.2b

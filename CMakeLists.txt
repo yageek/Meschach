@@ -65,6 +65,7 @@ OPTION(MUNROLL_OPTION  "unroll low level loops on matrices" OFF)
 OPTION(SEGMENTED_OPTION  "single precision" OFF)
 OPTION(REAL_FLT_OPTION  "float" OFF)
 OPTION(REAL_DBL_OPTION  "double precision (default)" ON)
+OPTION(ANDROID_COMPILE "compile for android" ON) 
 
 if(COMPLEX_OPTION)
 	set(COMPLEX 1)
@@ -72,7 +73,7 @@ endif(COMPLEX_OPTION)
 
 if(SPARSE_OPTION)
 	set(SPARSE 1)
-endif(COMPLEX_OPTION)
+endif(SPARSE_OPTION)
 
 # Generate Headers
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/machine.h.in ${CMAKE_CURRENT_SOURCE_DIR}/machine.h)
@@ -114,6 +115,17 @@ endif(SPARSE_OPTION )
 if(COMPLEX_OPTION)
 	set (sources_files ${sources_files} ${ZLIST1} ${ZLIST2})
 endif(COMPLEX_OPTION)
+
+
+if(ANDROID_COMPILE)
+	MESSAGE(STATUS "Compilation for Android :${NDKROOT}")
+	if(NDKROOT)
+		set(CMAKE_C_COMPILER ${NDKROOT}/)
+	else()
+		MESSAGE(STATUS "NO NDKROOT defined add -DPATH_TO_NDK_ROOT")
+	endif()
+	#endif(ENV{NDKROOT})
+endif(ANDROID_COMPILE)
 
 add_library(meschach ${sources_files})
 

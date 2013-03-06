@@ -16,6 +16,12 @@ CHECK_CXX_SOURCE_COMPILES("extern int test (int i, double x);" HAVE_PROTOTYPES)
 CHECK_CXX_SOURCE_COMPILES("struct s1 {int (*f) (int a);};\nstruct s2 {int (*f) (double a);};" HAVE_PROTOTYPES_IN_STRUCT)
 CHECK_CXX_SOURCE_COMPILES("#include <stdio.h>\n#ifdef __STDC__\n#include <stdlib.h>\n#endif" U_INT_DEF)
 
+#Headers presence test
+CHECK_INCLUDE_FILES(memory.h HAVE_MEMORY_H)
+CHECK_INCLUDE_FILES(malloc.h HAVE_MALLOC_H)
+CHECK_INCLUDE_FILES(complex.h HAVE_COMPLEX_H)
+CHECK_INCLUDE_FILES(varargs.h HAVE_VARARGS_H)
+
 #Compute Machine epsilons for double and float values
 MESSAGE(STATUS "Compute machine epsilons :")
 
@@ -60,20 +66,13 @@ OPTION(SEGMENTED " single precision" OFF)
 OPTION(REAL_FLT "float" OFF)
 OPTION(REAL_DBL "double precision (default)" ON)
 
-
-#Headers presence test
-CHECK_INCLUDE_FILES(memory.h HAVE_MEMORY_H)
-CHECK_INCLUDE_FILES(malloc.h HAVE_MALLOC_H)
-CHECK_INCLUDE_FILES(complex.h HAVE_COMPLEX_H)
-CHECK_INCLUDE_FILES(varargs.h HAVE_VARARGS_H)
-
 # Generate Headers
 CONFIGURE_FILE(${CMAKE_CURRENT_SOURCE_DIR}/machine.h.in ${CMAKE_CURRENT_SOURCE_DIR}/machine.h)
 
 #### makefile.in part #########
 ####################################
 
-add_definitions(-O)
+add_definitions("-O -DINCLUDE_DIRECTORIES=${CMAKE_REQUIRED_INCLUDES}")
 
 set(HBASE err.h meminfo.h machine.h matrix.h)
 
@@ -91,7 +90,6 @@ set (LIST_3 sparse.c sprow.c sparseio.c spchfctr.c splufctr.c
 	spbkp.c spswap.c iter0.c itersym.c iternsym.c)
 
 set (OLD_LIST onjgrad.c lanczos.c arnoldi.c)
-
 
 file(GLOB_RECURSE all_source_files *.c)
 file(GLOB_RECURSE all_source_headers *.h)

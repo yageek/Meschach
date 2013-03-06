@@ -72,6 +72,9 @@
 #ifdef HAVE_MALLOC_H
 #define	MALLOCDECL	1
 #include	<malloc.h>
+#else
+#define	MALLOCDECL	1
+#include <stdlib.h>
 #endif
 
 /* any compiler should have this header */
@@ -177,8 +180,8 @@
 #endif
 #endif
 
-#cmakedefine F_MACHEPS
-#cmakedefine D_MACHEPS
+#cmakedefine F_MACHEPS @F_MACHEPS@
+#cmakedefine D_MACHEPS @D_MACHEPS@
 
 #ifndef MACHEPS
 #if REAL == DOUBLE
@@ -203,7 +206,7 @@
 #endif
 ********************/
 
-#cmakedefine	M_MAX_INT
+#cmakedefine	M_MAX_INT @M_MAX_INT@
 #ifdef	M_MAX_INT
 #ifndef MAX_RAND
 #define	MAX_RAND ((double)(M_MAX_INT))

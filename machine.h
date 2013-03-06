@@ -20,7 +20,7 @@
 /* #undef NOT_SEGMENTED */
 #define HAVE_MEMORY_H
 #define HAVE_COMPLEX_H
-#define HAVE_MALLOC_H
+/* #undef HAVE_MALLOC_H */
 /* #undef STDC_HEADERS */
 /* #undef HAVE_BCOPY */
 /* #undef HAVE_BZERO */
@@ -72,6 +72,9 @@
 #ifdef HAVE_MALLOC_H
 #define	MALLOCDECL	1
 #include	<malloc.h>
+#else
+#define	MALLOCDECL	1
+#include <stdlib.h>
 #endif
 
 /* any compiler should have this header */
@@ -177,8 +180,10 @@
 #endif
 #endif
 
-#define F_MACHEPS
-#define D_MACHEPS
+#define F_MACHEPS 1.19209e-07
+
+#define D_MACHEPS 2.22045e-16
+
 
 #ifndef MACHEPS
 #if REAL == DOUBLE
@@ -203,7 +208,8 @@
 #endif
 ********************/
 
-#define	M_MAX_INT
+#define	M_MAX_INT 2147483647
+
 #ifdef	M_MAX_INT
 #ifndef MAX_RAND
 #define	MAX_RAND ((double)(M_MAX_INT))

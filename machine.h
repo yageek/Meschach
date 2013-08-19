@@ -40,7 +40,11 @@
 #ifndef HAVE_PROTOTYPES_IN_STRUCT
 #define HAVE_PROTOTYPES_IN_STRUCT 1
 #endif
+#include<cfloat>
+#else
+#include<float.h>
 #endif /* __cplusplus */
+
 
 /* example usage: VEC *PROTO(v_get,(int dim)); */
 #ifdef HAVE_PROTOTYPES
@@ -175,10 +179,8 @@
 #endif
 #endif
 
-#define F_MACHEPS 1.19209e-07
-
-#define D_MACHEPS 2.22045e-16
-
+#define F_MACHEPS __FLT_EPSILON__
+#define D_MACHEPS __DBL_EPSILON__
 
 #ifndef MACHEPS
 #if REAL == DOUBLE
@@ -203,8 +205,7 @@
 #endif
 ********************/
 
-#define	M_MAX_INT 2147483647
-
+/* #undef M_MAX_INT */
 #ifdef	M_MAX_INT
 #ifndef MAX_RAND
 #define	MAX_RAND ((double)(M_MAX_INT))

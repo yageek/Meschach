@@ -41,8 +41,10 @@
 #define HAVE_PROTOTYPES_IN_STRUCT 1
 #endif
 #include<cfloat>
+#include<climits>
 #else
 #include<float.h>
+#include<limits.h>
 #endif /* __cplusplus */
 
 
@@ -205,7 +207,7 @@
 #endif
 ********************/
 
-#cmakedefine	M_MAX_INT @M_MAX_INT@
+#define	M_MAX_INT MAX_INT
 #ifdef	M_MAX_INT
 #ifndef MAX_RAND
 #define	MAX_RAND ((double)(M_MAX_INT))

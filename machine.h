@@ -20,8 +20,8 @@
 /* #undef NOT_SEGMENTED */
 #define HAVE_MEMORY_H
 #define HAVE_COMPLEX_H
-/* #undef HAVE_MALLOC_H */
-/* #undef STDC_HEADERS */
+#define HAVE_MALLOC_H
+#define STDC_HEADERS
 /* #undef HAVE_BCOPY */
 /* #undef HAVE_BZERO */
 /* #undef CHAR0ISDBL0 */
@@ -41,8 +41,10 @@
 #define HAVE_PROTOTYPES_IN_STRUCT 1
 #endif
 #include<cfloat>
+#include<climits>
 #else
 #include<float.h>
+#include<limits.h>
 #endif /* __cplusplus */
 
 
@@ -205,7 +207,7 @@
 #endif
 ********************/
 
-/* #undef M_MAX_INT */
+#define	M_MAX_INT MAX_INT
 #ifdef	M_MAX_INT
 #ifndef MAX_RAND
 #define	MAX_RAND ((double)(M_MAX_INT))

@@ -2,7 +2,10 @@
 
 To compile : cmake . -DCOMPLEX_OPTION=YES -DSPARSE_OPTION=YES
 -------
-PDF Manual available at https://maths-proceedings.anu.edu.au/CMAProcVol32/CMAProcVol32-Complete.pdf
+
+# PDF Manual available
+
+https://maths-proceedings.anu.edu.au/CMAProcVol32/CMAProcVol32-Complete.pdf
 -------
 				     
 			     Meschach Library

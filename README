@@ -1,6 +1,6 @@
 # CMake Integration 
 
-To compile : cmake .. -DCOMPLEX_OPTION=NO -SPARSE_OPTION=NO
+To compile : cmake . -DCOMPLEX_OPTION=YES -DSPARSE_OPTION=YES
 -------
 				     
 			     Meschach Library

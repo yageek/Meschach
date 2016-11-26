@@ -105,6 +105,7 @@ MAT     *im_finput(FILE *fp,MAT *mat)
 {
      char       c;
      unsigned int      i, j, m, n, dynamic;
+     int        io_code;
      /* dynamic set to TRUE if memory allocated here */
      
      /* get matrix size */
@@ -147,8 +148,8 @@ MAT     *im_finput(FILE *fp,MAT *mat)
 	       } while ( *line=='\0' || sscanf(line,"%f",&mat->me[i][j])<1 );
 #endif
 	  fprintf(stderr,"Continue: ");
-	  fscanf(fp,"%c",&c);
-	  if ( c == 'n' || c == 'N' )
+	  io_code=fscanf(fp,"%c",&c);
+	  if ( io_code < 1 || c == 'n' || c == 'N' )
 	  {    dynamic = FALSE;                 goto redo;      }
 	  if ( (c == 'b' || c == 'B') /* && i > 0 */ )
 	  {     if ( i > 0 )

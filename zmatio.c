@@ -103,6 +103,7 @@ ZMAT     *izm_finput(FILE *fp, ZMAT *mat)
 {
      char       c;
      unsigned int      i, j, m, n, dynamic;
+     int        io_code;
      /* dynamic set to TRUE if memory allocated here */
      
      /* get matrix size */
@@ -147,8 +148,8 @@ ZMAT     *izm_finput(FILE *fp, ZMAT *mat)
 #endif	
 				&mat->me[i][j].re,&mat->me[i][j].im)<1 );
 	  fprintf(stderr,"Continue: ");
-	  fscanf(fp,"%c",&c);
-	  if ( c == 'n' || c == 'N' )
+	  io_code = fscanf(fp,"%c",&c);
+	  if ( io_code < 1 || c == 'n' || c == 'N' )
 	  {    dynamic = FALSE;                 goto redo;      }
 	  if ( (c == 'b' || c == 'B') /* && i > 0 */ )
 	  {     if ( i > 0 )

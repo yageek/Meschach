@@ -185,11 +185,14 @@ char    **name;
     A = zm_get((unsigned)(mat.m),(unsigned)(mat.n));
     for ( i = 0; i < A->m*A->n; i++ )
     {
-	if ( p_flag == DOUBLE_PREC )
-	    fread(&d_temp,sizeof(double),1,fp);
+	if ( p_flag == DOUBLE_PREC ) {
+	    if (fread(&d_temp,sizeof(double),1,fp) != 1)
+            error(E_FORMAT,"zm_load");
+    }
 	else
 	{
-	    fread(&f_temp,sizeof(float),1,fp);
+	    if (fread(&f_temp,sizeof(float),1,fp) != 1)
+            error(E_FORMAT,"zm_load");
 	    d_temp = f_temp;
 	}
 	if ( o_flag == ROW_ORDER )
@@ -203,12 +206,15 @@ char    **name;
     if ( mat.imag )         /* skip imaginary part */
 	for ( i = 0; i < A->m*A->n; i++ )
 	{
-	    if ( p_flag == DOUBLE_PREC )
-		fread(&d_temp,sizeof(double),1,fp);
+	    if ( p_flag == DOUBLE_PREC ) {
+		    if (fread(&d_temp,sizeof(double),1,fp) != 1)
+                error(E_FORMAT,"zm_load");
+        }
 	    else
 	    {
-		fread(&f_temp,sizeof(float),1,fp);
-		d_temp = f_temp;
+		    if (fread(&f_temp,sizeof(float),1,fp) != 1)
+                error(E_FORMAT,"zm_load");
+            d_temp = f_temp;
 	    }
 	    if ( o_flag == ROW_ORDER )
 		A->me[i / A->n][i % A->n].im = d_temp;

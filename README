@@ -1,6 +1,11 @@
 # CMake Integration 
 
-To compile : cmake .. -DCOMPLEX_OPTION=NO -SPARSE_OPTION=NO
+To compile : cmake . -DCOMPLEX_OPTION=YES -DSPARSE_OPTION=YES
+-------
+
+# PDF Manual available
+
+https://maths-proceedings.anu.edu.au/CMAProcVol32/CMAProcVol32-Complete.pdf
 -------
 				     
 			     Meschach Library

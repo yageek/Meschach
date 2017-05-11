@@ -1,0 +1,5 @@
+language: cpp
+compiler: gcc
+
+script: 
+  - cmake . -DCOMPLEX_OPTION=YES -DSPARSE_OPTION=YES

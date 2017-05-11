@@ -1,6 +1,6 @@
 # CMake Integration 
 
-[![Build Status](https://travis-ci.org/richelbilderbeek/Meschach.svg?branch=master)](https://travis-ci.org/richelbilderbeek/Meschach)
+Build Status: https://travis-ci.org/richelbilderbeek/Meschach
 
 To compile : cmake . -DCOMPLEX_OPTION=YES -DSPARSE_OPTION=YES
 -------

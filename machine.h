@@ -62,8 +62,8 @@
 #endif /* HAVE_PROTOTYPES_IN_STRUCT */
 
 /* for basic or larger versions */
-/* #undef COMPLEX */
-/* #undef SPARSE */
+#define COMPLEX 1
+#define SPARSE  1
 
 /* for loop unrolling */
 /* #undef VUNROLL */

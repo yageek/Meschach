@@ -1,6 +1,10 @@
 INCLUDEPATH += $$PWD
+
 HEADERS += $$PWD/*.h
 
+# Only use the source files without a main function,
+# so this file can be used for other programs to 
+# use Meschach
 SOURCES += \
     $$PWD/arnoldi.c \
     $$PWD/bdfactor.c \
@@ -8,16 +12,13 @@ SOURCES += \
     $$PWD/chfactor.c \
     $$PWD/conjgrad.c \
     $$PWD/copy.c \
-    #$$PWD/dmacheps.c \
     $$PWD/err.c \
     $$PWD/extras.c \
     $$PWD/fft.c \
-    #$$PWD/fmacheps.c \
     $$PWD/givens.c \
     $$PWD/hessen.c \
     $$PWD/hsehldr.c \
     $$PWD/init.c \
-    #$$PWD/iotort.c \
     $$PWD/iter0.c \
     $$PWD/iternsym.c \
     $$PWD/itersym.c \
@@ -29,13 +30,10 @@ SOURCES += \
     $$PWD/matlab.c \
     $$PWD/matop.c \
     $$PWD/matrixio.c \
-    #$$PWD/maxint.c \
     $$PWD/meminfo.c \
     $$PWD/memory.c \
     $$PWD/memstat.c \
-    #$$PWD/memtort.c \
     $$PWD/mfunc.c \
-    #$$PWD/mfuntort.c \
     $$PWD/norm.c \
     $$PWD/otherio.c \
     $$PWD/pxop.c \
@@ -49,13 +47,9 @@ SOURCES += \
     $$PWD/splufctr.c \
     $$PWD/sprow.c \
     $$PWD/spswap.c \
-    #$$PWD/sptort.c \
     $$PWD/submat.c \
     $$PWD/svd.c \
     $$PWD/symmeig.c \
-    #$$PWD/torture.c \
-    #$$PWD/tutadv.c \
-    #$$PWD/tutorial.c \
     $$PWD/update.c \
     $$PWD/vecop.c \
     $$PWD/version.c \

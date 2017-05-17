@@ -51,10 +51,10 @@ static void interchange(A,i,j)
 MAT	*A;	/* assumed != NULL & also SQUARE */
 int	i, j;	/* assumed in range */
 {
-	Real	**A_me, tmp;
+	Real	tmp;
 	int	k, n;
 
-	A_me = A->me;	n = A->n;
+	n = A->n;
 	if ( i == j )
 		return;
 	if ( i > j )
@@ -108,7 +108,7 @@ MAT	*BKPfactor(MAT *A, PERM *pivot, PERM *blocks)
 #endif
 {
 	int	i, j, k, n, onebyone, r;
-	Real	**A_me, aii, aip1, aip1i, lambda, sigma, tmp;
+	Real	aii, aip1, aip1i, lambda, sigma, tmp;
 	Real	det, s, t;
 
 	if ( ! A || ! pivot || ! blocks )
@@ -119,7 +119,6 @@ MAT	*BKPfactor(MAT *A, PERM *pivot, PERM *blocks)
 		error(E_SIZES,"BKPfactor");
 
 	n = A->n;
-	A_me = A->me;
 	px_ident(pivot);	px_ident(blocks);
 
 	for ( i = 0; i < n; i = onebyone ? i+1 : i+2 )
@@ -240,7 +239,7 @@ VEC	*BKPsolve(const MAT *A, PERM *pivot, const PERM *block,
 {
 	STATIC VEC	*tmp=VNULL;	/* dummy storage needed */
 	int	i, j, n, onebyone;
-	Real	**A_me, a11, a12, a22, b1, b2, det, sum, *tmp_ve, tmp_diag;
+	Real	a11, a12, a22, b1, b2, det, sum, tmp_diag;
 
 	if ( ! A || ! pivot || ! block || ! b )
 		error(E_NULL,"BKPsolve");
@@ -252,8 +251,6 @@ VEC	*BKPsolve(const MAT *A, PERM *pivot, const PERM *block,
 	x = v_resize(x,n);
 	tmp = v_resize(tmp,n);
 	MEM_STAT_REG(tmp,TYPE_VEC);
-
-	A_me = A->me;	tmp_ve = tmp->ve;
 
 	px_vec(pivot,b,tmp);
 	/* solve for lower triangular part */

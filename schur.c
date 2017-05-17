@@ -70,12 +70,12 @@ static	void	hhldr3cols(MAT *A, int k, int j0, double beta,
 			   double nu1, double nu2, double nu3)
 #endif
 {
-	Real	**A_me, ip, prod;
+	Real	ip, prod;
 	int	j, n;
 
 	if ( k < 0 || k+3 > A->m || j0 < 0 )
 		error(E_BOUNDS,"hhldr3cols");
-	A_me = A->me;		n = A->n;
+	n = A->n;
 
 	/* printf("hhldr3cols:(l.%d) j0 = %d, k = %d, A at 0x%lx, m = %d, n = %d\n",
 	       __LINE__, j0, k, (long)A, A->m, A->n); */
@@ -119,14 +119,14 @@ static	void	hhldr3rows(MAT *A, int k, int i0, double beta,
 			   double nu1, double nu2, double nu3)
 #endif
 {
-	Real	**A_me, ip, prod;
+	Real	ip, prod;
 	int	i, m;
 
 	/* printf("hhldr3rows:(l.%d) A at 0x%lx\n", __LINE__, (long)A); */
 	/* printf("hhldr3rows: k = %d\n", k); */
 	if ( k < 0 || k+3 > A->n )
 		error(E_BOUNDS,"hhldr3rows");
-	A_me = A->me;		m = A->m;
+	m = A->m;
 	i0 = min(i0,m-1);
 
 	for ( i = 0; i <= i0; i++ )

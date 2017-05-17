@@ -315,7 +315,7 @@ MAT	*m_resize(MAT *A,int new_m, int new_n)
 		      new_m*sizeof(Real *));
       }
 
-      A->me = RENEW(A->me,new_m,Real *);
+      RENEW(A->me,new_m,Real *);
       if ( ! A->me )
 	error(E_MEM,"m_resize");
    }
@@ -453,7 +453,7 @@ PERM	*px_resize(PERM *px, int new_size)
 	 mem_bytes(TYPE_PERM,px->max_size*sizeof(unsigned int),
 		      new_size*sizeof(unsigned int));
       }
-      px->pe = RENEW(px->pe,new_size,unsigned int);
+      RENEW(px->pe,new_size,unsigned int);
       if ( ! px->pe )
 	error(E_MEM,"px_resize");
       px->max_size = new_size;
@@ -502,7 +502,7 @@ VEC	*v_resize(VEC *x, int new_dim)
 			 new_dim*sizeof(Real));
       }
 
-      x->ve = RENEW(x->ve,new_dim,Real);
+      RENEW(x->ve,new_dim,Real);
       if ( ! x->ve )
 	error(E_MEM,"v_resize");
       x->max_dim = new_dim;

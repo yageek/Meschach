@@ -125,7 +125,7 @@ IVEC	*iv_resize(IVEC *iv, int new_dim)
 	 mem_bytes(TYPE_IVEC,iv->max_dim*sizeof(int),
 		      new_dim*sizeof(int));
       }
-      iv->ive = RENEW(iv->ive,new_dim,int);
+      RENEW(iv->ive,new_dim,int);
       if ( ! iv->ive )
 	error(E_MEM,"iv_resize");
       iv->max_dim = new_dim;

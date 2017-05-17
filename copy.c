@@ -225,7 +225,7 @@ MAT	*vm_move(const VEC *in, int i0,
 		 MAT *out, int i1, int j1, int m1, int n1)
 #endif
 {
-    int		dim0, i;
+    int		i;
 
     if ( ! in )
 	error(E_NULL,"vm_move");
@@ -238,7 +238,6 @@ MAT	*vm_move(const VEC *in, int i0,
     else
 	out = m_resize(out,max(i1+m1,out->m),max(j1+n1,out->n));
 
-    dim0 = m1*n1;
     for ( i = 0; i < m1; i++ )
 	MEM_COPY(&(in->ve[i0+i*n1]),&(out->me[i1+i][j1]),n1*sizeof(Real));
 

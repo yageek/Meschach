@@ -239,7 +239,7 @@ ITER *iter_copy2(ITER *ip1, ITER *ip2)
 	 mem_numvar(TYPE_ITER,1);
       }
       ip2->x = ip2->b = NULL;
-      ip2->shared_x = ip2->shared_x = FALSE;
+      ip2->shared_x = ip2->shared_b = FALSE;
    }
 
    x = ip2->x;

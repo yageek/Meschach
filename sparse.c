@@ -103,7 +103,7 @@ double	sp_set_val(SPMAT *A, int i, int j, double val)
 			    new_len*sizeof(row_elt));
 	 }
 
-	 r->elt = RENEW(r->elt,new_len,row_elt);
+	 RENEW(r->elt,new_len,row_elt);
 	 if ( ! r->elt )	/* can't allocate */
 	   error(E_MEM,"sp_set_val");
 	 r->maxlen = 2*r->maxlen+1;
